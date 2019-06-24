@@ -1,0 +1,23 @@
+.container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.button {
+  margin: 10%;
+  background-color: rgb(159, 182, 159);
+  height: 3rem;
+
+}
+
+#imagens {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+img {
+  width: 50%;
+}
