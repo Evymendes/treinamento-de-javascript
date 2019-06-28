@@ -7,18 +7,30 @@ const memesArray = [
 ];
 
 let img = document.createElement("IMG");
+let buttonShere = document.createElement("P");
 let image = document.getElementById('imagens')
 let randomValue = memesArray[Math.floor(memesArray.length * Math.random())];
 img.src = randomValue;
+buttonShere = 'hi';
 image.appendChild(img);
+image.appendChild(buttonShere);
+
 
 function gerarMemes() {
   let image = document.getElementById('imagens')
   let randomValue = memesArray[Math.floor(memesArray.length * Math.random())];
   img.src = randomValue;
- 
+  
   image.appendChild(img);
 }
+
+function oooooo() {
+  console.log('oi')
+  let shereMemes = document.getElementById('shereMemes');
+  shereMemes.innerHTML = 'HUM';
+
+}
+
 
 
 
