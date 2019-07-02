@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>To do List</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<div>
+		<h1>To do list</h1>
+		<form>
+			<label>Título</label>
+			<input type="text" name="titulo" onkeyup=handleInput(this) placeholder="inserts a title..." required />
+	
+			<label>Descrição</label>
+			<input type="text" name="descricao" onkeyup=handleInput(this) placeholder="Inserts a description..." />
+	
+			<label>Color</label>
+			<input type="color" />
+
+			<label>Status</label>
+			<input type="text" name="status" onkeyup=handleInput(this) placeholder="Inserts a status..." />
+			
+
+			<label>Tags</label>
+			<input type="text" name="tags" onkeyup=handleInput(this) placeholder="Inserts a status..." />
+		</form>
+		<button onclick=submitData()>Submit</button>
+		<ul id="container">
+		</ul>
+	</div>
+    <script type="text/javascript" src="main.js"></script>
+
+	</body>
+</html>
