@@ -25,10 +25,8 @@ function gerarMemes() {
 }
 
 function oooooo() {
-  console.log('oi')
   let shereMemes = document.getElementById('shereMemes');
   shereMemes.innerHTML = 'HUM';
-
 }
 
 

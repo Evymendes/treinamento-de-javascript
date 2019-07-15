@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Table in JavaScript</title>
+  <style>
+    table  { border-collapse: collapse; }
+    td, th { border: 1px solid black; padding: 3px 8px; }
+    th     { text-align: left; }
+  </style>
+  <meta charset="utf-8" />
+</head>
+<body>
+  <script>
+    let MOUNTAINS = [
+      {name: 'Pico Blue', height: 2256, country: 'Jamaica' },
+      {name: 'Monte Everest ', height: 8848, country: 'China' },
+      {name: 'Nanga Parbat', height: 8125, country: 'Paquistão' },
+      {name: 'Corcovado', height: 710, country: 'Rio de Janeiro' },
+    ]
+    let mountainsKey = Object.keys(MOUNTAINS[0]);
+    
+    function buildTable(item) {
+      let createTable = document.createElement('table');
+      
+      let header  = createHeader();     
+      createTable.appendChild(header);
+
+      item.map((item) => {
+        let body = createBody(item);
+        createTable.appendChild(body);
+      });
+
+      return createTable;
+    }
+
+    function createHeader() {
+      let createTr = document.createElement('tr');
+
+      mountainsKey.map((title) => {
+        let createTh = document.createElement('th');
+        createTh.textContent = title;
+        createTr.appendChild(createTh);
+      });
+      return createTr;
+    }
+
+    function createBody(item) {
+      let createTr = document.createElement('tr');
+
+      mountainsKey.map((mountain) => {
+        let createTd = document.createElement('td');
+        createTd.textContent =item[mountain];
+        createTr.appendChild(createTd);
+      });	
+
+      return createTr;
+    }
+
+  document.body.appendChild(buildTable(MOUNTAINS));
+  </script>
+</body>
+</html>

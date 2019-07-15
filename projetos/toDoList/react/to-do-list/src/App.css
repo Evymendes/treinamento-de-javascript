@@ -1,0 +1,44 @@
+.App {
+  text-align: center;
+}
+
+form{
+  min-height: 5vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(5px + 2vmin);
+  color: back;
+}
+
+input {
+  margin-left: .5rem;
+}
+
+ul {
+  min-height: 10rem;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  background: pink;
+}
+
+li {
+  min-height: 11rem;
+  margin: 0.5rem;
+  width: 19rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.buttons{
+  display: flex;
+  flex-direction: row;
+
+}
