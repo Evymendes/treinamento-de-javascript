@@ -88,11 +88,11 @@ function render() {
     };
     
 	series.map((note, index) => {
-		renderEpisode(note, index);
+		renderSerie(note, index);
 	});
 };
 
-function renderEpisode(note, index) {
+function renderSerie(note, index) {
     let card = document.createElement('li');
 
     let title = renderTitle('h3', note.title);
@@ -152,9 +152,14 @@ function renderEpisodio(item) {
     let inputDuration = renderInput('Duração');
     labelDuration.appendChild(inputDuration);
 
+    const labelCategory = renderTitle('label', 'Categoria');
+    let inputCategory = renderInput('categoria');
+    labelCategory.appendChild(inputCategory);
+
     item.appendChild(labelTemporada);
     item.appendChild(labelName);
     item.appendChild(labelDuration);
+    item.appendChild(labelCategory);
 }
 
 body.appendChild(renderScreen());
