@@ -4,10 +4,10 @@ const sectionUl = document.createElement('section');
 let cards = document.createElement("ul");
 let series = [];
 let episodeList = [];
+const section = document.createElement('section');
+let form = document.createElement('form');
 
 function renderScreen() {
-    const section = document.createElement('section');
-    let form = document.createElement('form');
     const header = document.createElement('header');
 
     const title = renderTitle('h2', 'Biblioteca das séries');
@@ -24,18 +24,6 @@ function renderScreen() {
     const labelEpisodeTxt = document.createTextNode('Episodio');
     labelEpisode.appendChild(labelEpisodeTxt);
 
-    const labelTemporada = renderTitle('label', 'Temporada');
-    let inputTemporada = renderInput('Temporada');
-    labelTemporada.appendChild(inputTemporada)
-
-    const labelName = renderTitle('label', 'Nome do Episodio');
-    let inputName = renderInput('nameEpisode');
-    labelName.appendChild(inputName);
-
-    const labelDuration = renderTitle('label', 'Duração');
-    let inputDuration = renderInput('Duração');
-    labelDuration.appendChild(inputDuration);
-
     let buttonEpisodio = renderTitle('button', 'Add Episódio');
 
     let buttonAdd = renderTitle('button', 'Salvar');
@@ -48,40 +36,23 @@ function renderScreen() {
     form.appendChild(labelTitle);
     form.appendChild(labelDescription);
     form.appendChild(labelEpisode);
-    form.appendChild(labelTemporada);
-    form.appendChild(labelName);
-    form.appendChild(labelDuration);
+    renderEpisodio(form);
     form.appendChild(buttonEpisodio);
     form.appendChild(buttonAdd);
     
     buttonEpisodio.addEventListener("click", event => {
         event.preventDefault();
+
         const spanTemporada = document.createElement('span');
 
-        const labelTemporada = renderTitle('label', 'Temporada');
-        let inputTemporada = renderInput('Temporada');
-        labelTemporada.appendChild(inputTemporada)
-
-        const labelName = renderTitle('label', 'Nome da temporada');
-        let inputName = renderInput('nameEpisode');
-        labelName.appendChild(inputName);
-
-        const labelDuration = renderTitle('label', 'Duração');
-        let inputDuration = renderInput('Duracao');
-        labelDuration.appendChild(inputDuration);
-
-        let episodioButton = document.createElement('button');
-        let buttonTxt = document.createTextNode('Excluir Episodio');
-        episodioButton.appendChild(buttonTxt);
-
+        let episodioButton = renderTitle('button', 'Excluir Episodio');
+        
         episodioButton.addEventListener("click", event => {
             event.preventDefault();
             spanTemporada.style.display = 'none';
         })
-
-        spanTemporada.appendChild(labelTemporada);
-        spanTemporada.appendChild(labelName);
-        spanTemporada.appendChild(labelDuration);
+        
+        renderEpisodio(spanTemporada); 
         spanTemporada.appendChild(episodioButton);
 
         form.appendChild(spanTemporada);
@@ -117,7 +88,7 @@ function render() {
     };
     
 	series.map((note, index) => {
-		renderEpisode(note, index)
+		renderEpisode(note, index);
 	});
 };
 
@@ -168,8 +139,26 @@ function renderInput(txt){
     return input
 }
 
-body.appendChild(renderScreen())
-sectionUl.appendChild(cards)
-main.appendChild(sectionUl)
-body.appendChild(main)
+function renderEpisodio(item) {
+    const labelTemporada = renderTitle('label', 'Temporada');
+    let inputTemporada = renderInput('Temporada');
+    labelTemporada.appendChild(inputTemporada);
+
+    const labelName = renderTitle('label', 'Nome do Episodio');
+    let inputName = renderInput('nameEpisode');
+    labelName.appendChild(inputName);
+
+    const labelDuration = renderTitle('label', 'Duração');
+    let inputDuration = renderInput('Duração');
+    labelDuration.appendChild(inputDuration);
+
+    item.appendChild(labelTemporada);
+    item.appendChild(labelName);
+    item.appendChild(labelDuration);
+}
+
+body.appendChild(renderScreen());
+sectionUl.appendChild(cards);
+main.appendChild(sectionUl);
+body.appendChild(main);
 window.onload = body;
