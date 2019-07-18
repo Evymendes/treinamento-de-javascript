@@ -42,7 +42,7 @@ let div = document.createElement('div');
 
 function renderQuiz() {
   let selectedQuestion = quiz[lenghtSelected];
-  let form = document.createElement('form');
+  const form = document.createElement('form');
   
   let questionElement = document.createElement('h4');
   let questionTxt = document.createTextNode(selectedQuestion.question);
@@ -91,13 +91,13 @@ function renderQuiz() {
       div.appendChild(createResult);
       createResult.appendChild(createTxt);
 
-      let buttonRefazer = document.createElement('button');
+      let buttonRedo = document.createElement('button');
       let buttonTxt = document.createTextNode('Refazer');
-      buttonRefazer.appendChild(buttonTxt);
-      div.appendChild(buttonRefazer);
-      buttonRefazer.setAttribute("id", "Div1");
+      buttonRedo.appendChild(buttonTxt);
+      div.appendChild(buttonRedo);
+      buttonRedo.setAttribute("id", "Div1");
       document.body.appendChild(div)
-      buttonRefazer.addEventListener("click", event => {
+      buttonRedo.addEventListener("click", event => {
         document.body.innerHTML = '';
         div.innerHTML = '';
         lenghtSelected = 0;
@@ -106,7 +106,9 @@ function renderQuiz() {
     });
     }
   });  
-  return form
+  // return form
+  document.body.appendChild(form)
 }
 
-document.body.appendChild(renderQuiz())
+
+window.onload = renderQuiz();

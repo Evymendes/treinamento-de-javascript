@@ -32,7 +32,7 @@ let newTags = document.createElement('p');
 		newList.appendChild(newTitle)
 		newList.appendChild(newDescription)
 		newList.appendChild(newTags)
-	};
+	})
 };
 
 function cleanInput() {
