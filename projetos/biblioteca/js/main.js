@@ -3,50 +3,44 @@ const main = document.createElement('main');
 const sectionUl = document.createElement('section');
 let cards = document.createElement("ul");
 let series = [];
-let test = [];
-let episodeList = [];
-let episodeCounter = 1;
+let seasonList = [];
 const section = document.createElement('section');
 let form = document.createElement('form');
-const ooooooo = document.createElement('div');
+const renderNewSeason = document.createElement('div');
 const header = document.createElement('header');
-
 const title = renderTitle('h2', 'Biblioteca das séries');
 
 function renderScreen() {
-
-    //criando o form principal
     const labelTitle = renderTitle('label', 'Título');
-    let inputTitle = renderInput('titulo');
+    let inputTitle = renderInput('title');
     labelTitle.appendChild(inputTitle);
 
     const labelDescription = renderTitle('label', 'Descrição');
-    let inputDescription = renderInput('descricao');
+    let inputDescription = renderInput('description');
     labelDescription.appendChild(inputDescription);
     
     const labelEpisode = document.createElement('p');
     const labelEpisodeTxt = document.createTextNode('Episodio');
     labelEpisode.appendChild(labelEpisodeTxt);
 
-    const labelTemporada = renderTitle('label', 'Temporada');
-    let inputTemporada = renderInput('temporada');
-    labelTemporada.appendChild(inputTemporada);
+    const labelSeason = renderTitle('label', 'season');
+    let inputseason = renderInput('season');
+    labelSeason.appendChild(inputseason);
 
     const labelName = renderTitle('label', 'Nome do Episodio');
     let inputName = renderInput('nameEpisode');
     labelName.appendChild(inputName);
 
     const labelDuration = renderTitle('label', 'Duração');
-    let inputDuration = renderInput('duracao');
+    let inputDuration = renderInput('duration');
     labelDuration.appendChild(inputDuration);
 
-    const labelCategory = renderTitle('label', 'Categoria');
-    let inputCategory = renderInput('categoria');
+    const labelCategory = renderTitle('label', 'category');
+    let inputCategory = renderInput('category');
     labelCategory.appendChild(inputCategory);
-
-    //botoes
-    let buttonEpisodio = renderTitle('button', 'Add Temporada');
-    buttonEpisodio.setAttribute('id', 'add');
+    
+    let buttonEpisode = renderTitle('button', 'Add season');
+    buttonEpisode.setAttribute('id', 'add');
 
     let buttonAdd = renderTitle('button', 'Salvar');
     buttonAdd.setAttribute('type', 'submit');
@@ -58,46 +52,25 @@ function renderScreen() {
     form.appendChild(labelTitle);
     form.appendChild(labelDescription);
     form.appendChild(labelEpisode);
-    form.appendChild(labelTemporada);
+    form.appendChild(labelSeason);
     form.appendChild(labelName);
     form.appendChild(labelDuration);
     form.appendChild(labelCategory);
-    form.appendChild(ooooooo);
-
-    // renderEpisodio(form);
+    form.appendChild(renderNewSeason);
     
-    buttonEpisodio.addEventListener("click", event => {
+    buttonEpisode.addEventListener("click", event => {
         event.preventDefault();
-        const spanTemporada = document.createElement('span');
-        
-        // cards.children[index].remove();
-        // series.splice(index, 1);
+      
+        const spanSeason = document.createElement('span');
 
-        // let episodioButton = renderTitle('button', 'Excluir Episodio');
-        
-        // episodioButton.addEventListener("click", event => {
-        //     event.preventDefault();
-        //     // spanTemporada.innerHTML = '';
-        //     // test.map((item) => {
-        //     //     console.log(item, 'test')
-        //     //     const labelDItem = renderTitle('p', item.testando);
-        //     //     //return labelDItem
-        //     //     ooooooo.appendChild(labelDItem);
-        //     // })
-        // })
-        
-        renderEpisodio(spanTemporada); 
-        //spanTemporada.appendChild(episodioButton);
+        renderEpisodio(spanSeason); 
 
-        form.appendChild(spanTemporada);
-        buttonEpisodio.style.display = "none"; 
+        form.appendChild(spanSeason);
 
-        // form.removeChild(buttonEpisodio);
-
-        //console.log('buttonEpisodio', spanTemporada)
+        buttonEpisode.style.display = "none";
     });
 
-    form.appendChild(buttonEpisodio);
+    form.appendChild(buttonEpisode);
     form.appendChild(buttonAdd);
 
     body.appendChild(header);
@@ -110,38 +83,36 @@ function render() {
     while (cards.firstChild) {
 		cards.removeChild(cards.firstChild);
     };
-console.log(series, 'series render first')
+
 	series.map((note, index) => {
         renderSerie(note, index);
     });
-    console.log(series, 'series render second')
 };
 
 form.addEventListener("submit", event => {
     event.preventDefault();
     
     series.push({
-        title: form.elements.titulo.value,
-        description: form.elements.descricao.value,
+        title: form.elements.title.value,
+        description: form.elements.description.value,
         status: '',
-        season: form.elements.temporada.value,
+        season: form.elements.season.value,
         nameEpisode: form.elements.nameEpisode.value,
-        duration: form.elements.duracao.value,
-        category: form.elements.categoria.value,
-        test
+        duration: form.elements.duration.value,
+        category: form.elements.category.value,
+        seasonList
     });
 
-    var list = document.querySelectorAll('#itemTemporada');
+    var list = document.querySelectorAll('#itemSeason');
     for(var i = list.length - 1; 0 <= i; i--)
     if(list[i] && list[i].parentElement)
     list[i].parentElement.removeChild(list[i]);
 
     render();
-    cleanValue()
+    cleanValue();
 });
 
 function renderSerie(note, index) {
-    // console.log('renderSerie', note)
     let card = document.createElement('li');
     let title = renderTitle('h3', note.title);
     let description = renderTitle('p', note.description);
@@ -149,49 +120,45 @@ function renderSerie(note, index) {
     let episodioSeason = renderTitle('p', note.season);
     let episodioName = renderTitle('p', note.nameEpisode);
     let episodioDuration = renderTitle('p', note.duration);
-    let episodioCategoria = renderTitle('p', note.category);
-    
+    let episodiocategory = renderTitle('p', note.category);
+
     card.appendChild(title);
     card.appendChild(description);
     card.appendChild(episodio);
     card.appendChild(episodioSeason);
     card.appendChild(episodioName);
     card.appendChild(episodioDuration);
-    card.appendChild(episodioCategoria);
- 
-    // note.test.map((segundo, index) => {
-    //     // segunda fez chega vazio
+    card.appendChild(episodiocategory);
+    
+    span = renderTitle('span', '');
+            
+    note.seasonList.map((item) => {
+        season = renderTitle('p', item.season);
+        nameEpisode = renderTitle('p', item. nameEpisode);
+        duration = renderTitle('p', item.duration);
+        category = renderTitle('p', item.category);
 
-    //     // console.log(note, 'nnnnoooooote')
-    //     //let episodioSeason = renderTitle('h3', segundo.testando);
-    //     let episodioTemporada = renderTitle('p', segundo.temporada);
-    //     let episodioName = renderTitle('p', segundo.nameEpisode);
-    //     let episodioDuration = renderTitle('p', segundo.duration);
-    //     let episodioCategoria = renderTitle('p', segundo.category);
-    //     let episodioDelete = renderTitle('button', 'Excluir');
-    //     //chega vazio se acrescentar mais um
-    //     //card.appendChild(episodioSeason);
-    //     card.appendChild(episodioTemporada);
-    //     card.appendChild(episodioName);
-    //     card.appendChild(episodioDuration);
-    //     card.appendChild(episodioCategoria);
-    //     card.appendChild(episodioDelete);
-    // });
-// console.log(index, 'index')
-    let buttonExluirSerie = renderTitle('button', 'Editar Serie');
-    let buttonEditarSerie = renderTitle('button', 'Excluir Serie');
+        span.appendChild(season);
+        span.appendChild(nameEpisode);
+        span.appendChild(duration);
+        span.appendChild(category);
+        
+    })
+
+    card.appendChild(span);
+
+    let buttonEditSerie = renderTitle('button', 'Editar Serie');
+    let buttonDeleteSerie = renderTitle('button', 'Excluir Serie');
     let buttonStatusSerie = renderTitle('button', 'Status');
     
-    card.appendChild(buttonExluirSerie);
-    card.appendChild(buttonEditarSerie);
+    card.appendChild(buttonDeleteSerie);
+    card.appendChild(buttonEditSerie);
     card.appendChild(buttonStatusSerie);
+
     cards.appendChild(card);
 
-    buttonEditarSerie.addEventListener("click", event => {
+    buttonDeleteSerie.addEventListener("click", event => {
         event.preventDefault();
-        //  return series.filter(function(el){
-        //     return el != note;
-        // });
         cards.children[index].remove();
         series.splice(index, 1);
     });
@@ -208,122 +175,91 @@ function renderTitle(element, txt) {
 
 function renderEpisodio(item) {
 
-    const labelTemporada = renderTitle('label', 'Temporada');
-    let inputTemporada = renderInput('temporadaa');
-    labelTemporada.appendChild(inputTemporada);
-
+    const labelSeason = renderTitle('label', 'Temporada');
+    let inputseason = renderInput('newSeason');
+    labelSeason.appendChild(inputseason);
+    
     const labelName = renderTitle('label', 'Nome do Episodio');
-    let inputName = renderInput('nameEpisodee');
+    let inputName = renderInput('newEpisode');
     labelName.appendChild(inputName);
-
+    
     const labelDuration = renderTitle('label', 'Duração');
-    let inputDuration = renderInput('duracaoo');
+    let inputDuration = renderInput('newDuration');
     labelDuration.appendChild(inputDuration);
 
     const labelCategory = renderTitle('label', 'Categoria');
-    let inputCategory = renderInput('categoriaa');
+    let inputCategory = renderInput('newCategory');
     labelCategory.appendChild(inputCategory);
 
-//     const label = document.createElement('label');
-//     const labelTxt = document.createTextNode('Temporada');
-
-//     label.appendChild(labelTxt);
-//     let input = document.createElement('input');
-//     input.setAttribute('type', 'text');
-// // input.setAttribute('value', txt);
-//     input.setAttribute('placeholder','test');
-//     input.setAttribute('name', 'test');
-//     input.setAttribute('required', 'true');
-
-
-    const buttonMais = document.createElement('button');
-    const buttonMaisTxt = document.createTextNode('+');
-    buttonMais.appendChild(buttonMaisTxt);
-
-    const buttonCancelar = document.createElement('button');
-    const buttonCancelarTxt = document.createTextNode('cancelar');
-    buttonCancelar.appendChild(buttonCancelarTxt);
+    const buttonAdd = document.createElement('button');
+    const buttonAddTxt = document.createTextNode('+');
+    buttonAdd.appendChild(buttonAddTxt);
+    
+    const buttonCancel = document.createElement('button');
+    const buttonCancelTxt = document.createTextNode('cancel');
+    buttonCancel.appendChild(buttonCancelTxt);
     
 
-    buttonMais.addEventListener("click", event => {
+    buttonAdd.addEventListener("click", event => {
         event.preventDefault();
-        renderNewTemporada();
-        test.map((item) => {
-           // const labelDItem = renderTitle('p', item.testando);
-           const span = renderTitle('span', '');
-           span.setAttribute('id', 'itemTemporada');
+        
+        if(form.elements.newSeason.value !== '' && form.elements.newEpisode.value !== '' && form.elements.newDuration.value !== '' && form.elements.newCategory.value !== '') {
+            seasonList.push({
+                season: form.elements.newSeason.value,
+                nameEpisode: form.elements.newEpisode.value,
+                duration: form.elements.newDuration.value,
+                category: form.elements.newCategory.value,
+           })
+        }
 
-            let episodioTemporada = renderTitle('p', item.temporada);
-        let episodioName = renderTitle('p', item.nomeEpisodio);
-        let episodioDuration = renderTitle('p', item.duracao);
-        let episodioCategoria = renderTitle('p', item.categoria);
+        const span = renderTitle('span', '');
+        span.setAttribute('id', 'itemSeason');
+
+        let episodioSeason = renderTitle('p', form.elements.newSeason.value);
+        let episodioName = renderTitle('p', form.elements.newEpisode.value);
+        let episodioDuration = renderTitle('p', form.elements.newDuration.value);
+        let episodiocategory = renderTitle('p', form.elements.newCategory.value);
         let episodioDelete = renderTitle('button', 'Delete');
 
         episodioDelete.addEventListener("click", event => {
             event.preventDefault();
-            let newTemporada = event.target.parentNode; 
-            newTemporada.remove()
-            // cards.children[index].remove();
+            let newseason = event.target.parentNode; 
+            newseason.remove()
         })
-        
-            //ooooooo.appendChild(labelDItem);
-            span.appendChild(episodioTemporada);
-            span.appendChild(episodioName);
-            span.appendChild(episodioDuration);
-            span.appendChild(episodioCategoria);
-            span.appendChild(episodioDelete);
-            ooooooo.appendChild(span);
-            //form.elements.test.value = '';
-            console.log(form.elements, 'form.elements')
-            form.elements.temporadaa.value = '';
-            form.elements.nameEpisodee.value = '';
-            form.elements.duracaoo.value = '';
-            form.elements.categoriaa.value = '';
-        })
-      test = [];
+
+         span.appendChild(episodioSeason);
+         span.appendChild(episodioName);
+         span.appendChild(episodioDuration);
+         span.appendChild(episodiocategory);
+         span.appendChild(episodioDelete);
+         renderNewSeason.appendChild(span);
+
+         form.elements.newSeason.value = '';
+         form.elements.newEpisode.value = '';
+         form.elements.newDuration.value = '';
+         form.elements.newCategory.value = '';
     });
 
-    buttonCancelar.addEventListener("click", event => {
+    buttonCancel.addEventListener("click", event => {
         event.preventDefault();
         let span = event.target.parentNode;
-        const buttonAddTemporada = document.getElementById('add')
-        buttonAddTemporada.style.display = "block"; 
+        const buttonAddseason = document.getElementById('add')
+        buttonAddseason.style.display = "block"; 
         span.remove()
-        // renderScreen();
     });
-
-    // if(form.elements.temporadaa !== undefined) {
-    //     console.log(form.elements.temporadaa, 'renderEpisodio')
-    // }
-
-    // item.appendChild(label);
-    item.appendChild(labelTemporada);
+    
+    item.appendChild(labelSeason);
     item.appendChild(labelName);
     item.appendChild(labelDuration);
     item.appendChild(labelCategory);
 
-    // item.appendChild(input);
-    item.appendChild(buttonMais);
-    item.appendChild(buttonCancelar);
-}
-
-function renderNewTemporada() {
-    if(form.elements.temporadaa.value !== '' && form.elements.nameEpisodee.value !== '' && form.elements.duracaoo.value !== '' && form.elements.categoriaa.value !== '') {
-        test.push({
-            // testando: form.elements.test.value,
-            temporada: form.elements.temporadaa.value,
-            nomeEpisodio: form.elements.nameEpisodee.value,
-            duracao: form.elements.duracaoo.value,
-            categoria: form.elements.categoriaa.value,
-       })
-    }
+    item.appendChild(buttonAdd);
+    item.appendChild(buttonCancel);
 }
 
 function renderInput(txt){
     let input = document.createElement('input');
     input.setAttribute('type', 'text');
-input.setAttribute('value', txt);
-    input.setAttribute('placeholder',txt);
     input.setAttribute('name', txt);
     input.setAttribute('required', 'true');
 
@@ -331,22 +267,12 @@ input.setAttribute('value', txt);
 }
 
 function cleanValue() {
-    form.elements.titulo.value = '';
-    form.elements.descricao.value = '';
-    form.elements.temporada.value = '';
+    form.elements.title.value = '';
+    form.elements.description.value = '';
+    form.elements.season.value = '';
     form.elements.nameEpisode.value = '';
-    form.elements.duracao.value = '';
-    form.elements.categoria.value = '';
-}
-
-function handleDeleteSerie() {
-    // buttonEditarSerie.addEventListener("click", event => {
-    //     event.preventDefault();
-    //      return series.filter(function(el){
-    //         return el != note;
-    //     });
-    // });
-    // render();
+    form.elements.duration.value = '';
+    form.elements.category.value = '';
 }
 
 body.appendChild(renderScreen());
